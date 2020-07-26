@@ -6,14 +6,23 @@ package com.exam.test.vo;
 *
 */
 public class User {
-	public String userName;
+	public Integer id;
+	public String username;
 	public String password;
-	
-	public String getUserName() {
-		return userName;
+	public Integer userid;
+
+	public Integer getId() {
+		return id;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+
+	public Integer getUserId() {
+		return userid;
+	}
+	public String getUserName() {
+		return username;
+	}
+	public void setUserName(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;
@@ -23,8 +32,8 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [userName=" + userName + ", password=" + password + "]";
+		return "User [id="+id+",username=" + username + ", password=" + password +",userid="+userid+"]";
 	}
-	
-	
+
+
 }

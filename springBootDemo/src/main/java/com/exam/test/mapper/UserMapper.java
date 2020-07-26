@@ -1,12 +1,7 @@
 package com.exam.test.mapper;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.type.MappedJdbcTypes;
-
 import com.exam.test.vo.User;
+import org.apache.ibatis.annotations.Mapper;
 
 
 
@@ -18,5 +13,8 @@ import com.exam.test.vo.User;
 */
 @Mapper
 public interface UserMapper {
-	List<User> findAllUser();
+	User findAllUser();
+	User findUserById(String id);
+	User findByName(String username, String password);
+	String getPassword(String username);
 }

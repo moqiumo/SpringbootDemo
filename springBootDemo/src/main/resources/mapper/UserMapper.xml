@@ -3,13 +3,22 @@
 <mapper namespace="com.exam.test.mapper.UserMapper" >
     
     <sql id="Base_Column_List" >
-        u.user_name userName,
+        u.username username,
         u.password password
     </sql>
     <select id="findAllUser" resultType="com.exam.test.vo.User">
-        select 
-            <include refid="Base_Column_List"/>
-            from User u
+        select
+            *
+            from user u
     </select>
-    
+    <select id="findUserById" resultType="com.exam.test.vo.User">
+        select * from user where userid = #{userid}
+    </select>
+
+    <select id="findByName" resultType="com.exam.test.vo.User">
+        select * from user where username = #{username} and password = #{password}
+    </select>
+    <select id="getPassword" resultType="com.exam.test.vo.User">
+        select password from user where username = #{username}
+    </select>
 </mapper>

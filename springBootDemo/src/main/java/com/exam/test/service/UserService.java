@@ -1,7 +1,5 @@
 package com.exam.test.service;
 
-import java.util.List;
-
 import com.exam.test.vo.User;
 
 /**
@@ -12,5 +10,8 @@ import com.exam.test.vo.User;
 */
 
 public interface UserService {
-	List<User> findAllUser();
+	User findAllUser();
+	User findUserById(String userid);
+	User findByName(String username,String password);
+	String getPassword(String username);
 }
