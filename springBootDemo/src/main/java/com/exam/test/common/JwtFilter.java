@@ -29,8 +29,13 @@ public class JwtFilter implements Filter {
         response.setCharacterEncoding("UTF-8");
         //获取 header里的token
         final String tokens=request.getHeader("authorization");
-        String[] tokenString = tokens.split(" ");
-        String token = tokenString[1];
+        String[] tokenString;
+        String token = null;
+        if(tokens != null){ 
+            tokenString = tokens.split(" ");
+            token = tokenString[1];
+        }
+ 
         System.out.println("token:"+token);
         if ("OPTIONS".equals(request.getMethod())){
             response.setStatus(HttpServletResponse.SC_OK);

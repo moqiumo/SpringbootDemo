@@ -28,17 +28,18 @@ public class UserController {
 	@Autowired
 	private UserService userService;
     static Map<Integer, User> userMap=new HashMap<>();
+	RestControllerHelper helper = new RestControllerHelper();
 	
 	@RequestMapping("/a/userList")
 	public User getAllUser(){ return userService.findAllUser();
 	}
 
 	@RequestMapping("/a/select")
-	public User findUserById(@RequestParam String userid) {
-		System.out.println("1111");
-		User ua = userService.findUserById(userid);
-		System.out.println("ua="+ua);
-		return ua;
+	public Map<String,Object> findUserById(@RequestParam Integer userid) {
+		helper.setCode(RestControllerHelper.SUCCESS);
+		helper.setMsg("success");
+		helper.setData(userService.findUserById(userid)) ;
+		return helper.toJsonMap();
 	}
 
 	@PostMapping("/login")
@@ -46,16 +47,19 @@ public class UserController {
 		JSONObject jsonObject=new JSONObject();
 		User user = userService.findByName(username, password);
 		if(user==null){
-			jsonObject.put("code", "400");
-			jsonObject.put("message","登录失败,用户不存在");
-			return jsonObject;
+			helper.setCode(RestControllerHelper.Parameter_Error);
+			helper.setMsg("登录失败,账号或密码错误！");
+			return helper.toJsonMapError();
 		}else{
-			System.out.println(user);
             String token= JwtUtil.createToken(user);
-            jsonObject.put("code", "200");
-            jsonObject.put("message", "success");
-            jsonObject.put("token", token);
-            return jsonObject;
+            helper.setCode(RestControllerHelper.SUCCESS);
+            helper.setMsg("登录成功");
+            helper.setData(token);
+            return helper.toJsonMap();
+//            jsonObject.put("code", "200");
+//            jsonObject.put("message", "success");
+//            jsonObject.put("token", token);
+//            return jsonObject;
         }
 	}
 

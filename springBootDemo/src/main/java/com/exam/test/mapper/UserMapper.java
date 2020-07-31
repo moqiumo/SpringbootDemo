@@ -14,7 +14,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper {
 	User findAllUser();
-	User findUserById(String id);
+	User findUserById(Integer id);
 	User findByName(String username, String password);
 	String getPassword(String username);
 }
