@@ -35,10 +35,7 @@ public class UserController {
 
 	@RequestMapping("/a/select")
 	public User findUserById(@RequestParam String userid) {
-		System.out.println("1111");
-		User ua = userService.findUserById(userid);
-		System.out.println("ua="+ua);
-		return ua;
+		return userService.findUserById(userid);
 	}
 
 	@PostMapping("/login")
