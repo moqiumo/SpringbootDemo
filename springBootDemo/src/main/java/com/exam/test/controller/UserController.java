@@ -22,11 +22,11 @@ import java.util.Map;
 */
 @Slf4j
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/tga")
 public class UserController {
 	@Autowired
 	private UserService userService;
-    static Map<Integer, User> userMap=new HashMap<>();
+    static Map<String, String> userMap=new HashMap<>();
 	RestControllerHelper helper = new RestControllerHelper();
 	private static Logger logger = LoggerFactory.getLogger(AjaxFilter.class);
 	
@@ -46,8 +46,6 @@ public class UserController {
 	@RequestMapping(value = "/login",method = RequestMethod.POST)
 	public Object login(@RequestBody User users){
 //		JSONObject jsonObject=new JSONObject();
-//		System.out.println("username:"+users.getUserName());
-//		System.out.println("password:"+users.getPassword());
 		logger.info(String.valueOf(users));
 		User user = userService.findByName(users.getUserName(), users.getPassword());
 		System.out.println(user);
@@ -59,7 +57,8 @@ public class UserController {
             String token= JwtUtil.createToken(user);
             helper.setCode(RestControllerHelper.SUCCESS);
             helper.setMsg("登录成功");
-            helper.setData(token);
+			userMap.put("token", token);
+            helper.setData(userMap);
             return helper.toJsonMap();
         }
 	}
