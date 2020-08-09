@@ -11,7 +11,7 @@ import com.exam.test.vo.User;
 
 public interface UserService {
 	User findAllUser();
-	User findUserById(String userid);
+	User findUserById(Integer userid);
 	User findByName(String username,String password);
 	String getPassword(String username);
 }
