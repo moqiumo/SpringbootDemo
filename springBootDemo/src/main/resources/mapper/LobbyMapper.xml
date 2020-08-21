@@ -5,6 +5,9 @@
     <select id="findAllMenu" resultType="com.exam.test.vo.Menu">
         select * from Menu
     </select>
+    <select id="findAccount" resultType="com.exam.test.vo.Account">
+        select * from Account where projectId = #{projectType}
+    </select>
 <!--    <select id="findUserById" resultType="com.exam.test.vo.User">-->
 <!--        select * from user where userid = #{userid}-->
 <!--    </select>-->
